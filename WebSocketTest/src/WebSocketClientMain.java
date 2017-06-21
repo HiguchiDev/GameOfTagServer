@@ -44,15 +44,16 @@ public class WebSocketClientMain {
 
     static public void main(String[] args) throws Exception {
 
-        // 初期化のため WebSocket コンテナのオブジェクトを取得する
-        WebSocketContainer container = ContainerProvider
-                .getWebSocketContainer();
+    	WebSocketContainer container = ContainerProvider
+		.getWebSocketContainer();
         // サーバー・エンドポイントの URI
         URI uri = URI
-                .create("ws://192.168.10.104:9080/WebSocketInspect/loadMessage");
+                .create("ws://192.168.10.104:8080/WebSocketInspect/loadMessage");
+
+        System.out.print(container);
         // サーバー・エンドポイントとのセッションを確立する
         Session session = container.connectToServer(new WebSocketClientMain(),
-                uri);
+               uri);
 
         session.getBasicRemote().sendText("こんにちは");
 

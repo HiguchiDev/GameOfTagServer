@@ -1,13 +1,11 @@
-import java.net.URI;
-
 import javax.websocket.ClientEndpoint;
-import javax.websocket.ContainerProvider;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+
+import javafx.stage.Stage;
 
 /**
  * Websocket Endpoint implementation class WebSocketClientMain
@@ -15,9 +13,13 @@ import javax.websocket.WebSocketContainer;
 
 @ClientEndpoint
 public class WebSocketClientMain {
-
-    public WebSocketClientMain() {
-        super();
+	Stage primaryStage;
+	int count = 0;
+	int limit = 100;
+	boolean right = false;
+	
+    public WebSocketClientMain(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 
     @OnOpen
@@ -29,7 +31,35 @@ public class WebSocketClientMain {
     @OnMessage
     public void onMessage(String message) {
         /* メッセージ受信時の処理 */
-        System.err.println("[受信]:" + message);
+    	//System.out.println(box.getTranslateX());
+        //box.setTranslateX(box.getTranslateX() - 3);
+    	count++;
+    	
+    	if (limit >= count){
+    		count++;
+    	}
+    	else{
+    		count = 0;
+    		if(right){
+    			right = false;
+    		}
+    		else{
+    			right = true;
+    		}
+    	}
+    	
+		if(right){
+			this.primaryStage.getScene().getCamera().setTranslateX(this.primaryStage.getScene().getCamera().getTranslateX() - 4);
+		}
+		else{
+			this.primaryStage.getScene().getCamera().setTranslateX(this.primaryStage.getScene().getCamera().getTranslateX() + 4);
+		}
+		
+    	
+    	System.err.println("[受信bbbbbb]:" + message);
+    	System.err.println(this.primaryStage.getScene().getCamera().getTranslateX());
+        
+        
     }
 
     @OnError
@@ -41,8 +71,8 @@ public class WebSocketClientMain {
     public void onClose(Session session) {
         /* セッション解放時の処理 */
     }
-
-    static public void main(String[] args) throws Exception {
+/*
+    public void connect() throws Exception {
 
     	WebSocketContainer container = ContainerProvider
 		.getWebSocketContainer();
@@ -63,5 +93,5 @@ public class WebSocketClientMain {
         }
 
     }
-
+*/
 }

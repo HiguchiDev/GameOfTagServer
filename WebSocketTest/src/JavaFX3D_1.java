@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.concurrent.Future;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
@@ -40,9 +41,10 @@ public class JavaFX3D_1 extends Application {
     	container = ContainerProvider
     			.getWebSocketContainer();
     	        // サーバー・エンドポイントの URI
+    	//118.0.60.157
     	        URI uri = URI
     	                .create("ws://192.168.10.104:8080/WebSocketInspect/loadMessage");
-
+    	        //192.168.10.104
     	        System.out.print(container);
     	        // サーバー・エンドポイントとのセッションを確立する
     	        session = container.connectToServer(new WebSocketClientMain(primaryStage),
@@ -87,8 +89,8 @@ public class JavaFX3D_1 extends Application {
 				e1.printStackTrace();
 			}
         });
-        
-        Timeline timer = new Timeline(new KeyFrame(Duration.millis(8), new EventHandler<ActionEvent>(){
+
+        Timeline timer = new Timeline(new KeyFrame(Duration.millis(60), new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
             	try {
@@ -102,6 +104,16 @@ public class JavaFX3D_1 extends Application {
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
 
+        
+      /*  for (int i = 0; i < 10000; i++){
+        	try {
+				connect();
+			} catch (Exception e1) {
+				// TODO 自動生成された catch ブロック
+				e1.printStackTrace();
+			}
+        }
+        */
         primaryStage.setTitle("JavaFX 3D 1");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -119,10 +131,19 @@ public class JavaFX3D_1 extends Application {
 
    	private void connect() throws Exception {
 
+   		System.err.println(session.isOpen());
 
-
-        session.getBasicRemote().sendText("こんにちは");
-
+   		Future future = session.getAsyncRemote().sendText("こんにちは");
+   		/*try {
+   		   future.get();
+   		  } catch (InterruptedException e) {
+   		   // TODO Auto-generated catch block
+   		   e.printStackTrace();
+   		  } catch (ExecutionException e) {
+   		   // TODO Auto-generated catch block
+   		   e.printStackTrace();
+   		  }
+*/
 
 
     }

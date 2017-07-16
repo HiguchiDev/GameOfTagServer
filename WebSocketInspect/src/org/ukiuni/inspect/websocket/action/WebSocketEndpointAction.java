@@ -15,7 +15,6 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketEndpointAction {
 	public static List<Session> sessions = new ArrayList<Session>();
 
-	public static int test = 0;
 	@OnOpen
 	public void onOpen(Session session) {
 		// 開始時
@@ -25,10 +24,9 @@ public class WebSocketEndpointAction {
 	@OnMessage
 	public void onMessage(String message) throws IOException {
 		// クライアントからの受信時
-		test++;
-		message += " : " + String.valueOf(test);
+		message += " : " + String.valueOf(sessions.size());
 		for (Session session : sessions) {
-			session.getBasicRemote().sendText("{\"command\":\"message\", \"text\": \"" + message.replace("\\", "\\\\").replace("\"", "\\\"") + "\"}");
+			session.getBasicRemote().sendText("{\"command\":\"message\", \"text\": \"" + sessions.size() + message.replace("\\", "\\\\").replace("\"", "\\\"") + "\"}");
 		}
 	}
 

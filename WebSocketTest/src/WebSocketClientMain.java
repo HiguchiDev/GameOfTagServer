@@ -56,9 +56,10 @@ public class WebSocketClientMain {
 		}
 		
     	
-    	System.err.println("[受信bbbbbb]:" + message);
+    	
     	System.err.println(this.primaryStage.getScene().getCamera().getTranslateX());
         
+    	System.err.println("[受信bbbbbb]:" + message);
         
     }
 

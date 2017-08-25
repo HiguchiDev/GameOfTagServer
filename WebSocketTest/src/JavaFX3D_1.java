@@ -36,7 +36,6 @@ public class JavaFX3D_1 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws DeploymentException, IOException {
-    	String a;
     	container = ContainerProvider
     			.getWebSocketContainer();
     	        // サーバー・エンドポイントの URI

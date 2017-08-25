@@ -36,7 +36,7 @@ public class JavaFX3D_1 extends Application {
 
     @Override
     public void start(Stage primaryStage) throws DeploymentException, IOException {
-
+    	String a;
     	container = ContainerProvider
     			.getWebSocketContainer();
     	        // サーバー・エンドポイントの URI
@@ -103,7 +103,7 @@ public class JavaFX3D_1 extends Application {
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
 
-        
+
       /*  for (int i = 0; i < 10000; i++){
         	try {
 				connect();

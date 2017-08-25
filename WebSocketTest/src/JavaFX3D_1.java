@@ -1,6 +1,5 @@
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.concurrent.Future;
 
 import javax.websocket.ContainerProvider;
@@ -42,14 +41,14 @@ public class JavaFX3D_1 extends Application {
     			.getWebSocketContainer();
     	        // サーバー・エンドポイントの URI
     	//118.0.60.157
-    	        URI uri = URI
+    	  /*      URI uri = URI
     	                .create("ws://192.168.10.104:8080/WebSocketInspect/loadMessage");
     	        //192.168.10.104
     	        System.out.print(container);
     	        // サーバー・エンドポイントとのセッションを確立する
     	        session = container.connectToServer(new WebSocketClientMain(primaryStage),
     	               uri);
-
+*/
 
 
     	    	 Cylinder cylinder = new Cylinder(50.0d, 100.0d);
@@ -93,12 +92,12 @@ public class JavaFX3D_1 extends Application {
         Timeline timer = new Timeline(new KeyFrame(Duration.millis(60), new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-            	try {
+            	/*try {
 					connect();
 				} catch (Exception e) {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();
-				}
+				}*/
             }
         }));
         timer.setCycleCount(Timeline.INDEFINITE);
@@ -131,7 +130,7 @@ public class JavaFX3D_1 extends Application {
 
    	private void connect() throws Exception {
 
-   		System.err.println(session.isOpen());
+   		//System.err.println(session.isOpen());
 
    		Future future = session.getAsyncRemote().sendText("こんにちは");
    		/*try {

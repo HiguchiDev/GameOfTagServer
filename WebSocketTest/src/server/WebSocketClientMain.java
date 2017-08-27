@@ -1,3 +1,4 @@
+package server;
 import javax.websocket.ClientEndpoint;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
